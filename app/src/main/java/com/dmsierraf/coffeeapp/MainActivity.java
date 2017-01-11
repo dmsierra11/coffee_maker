@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dmsierraf.coffeeapp.API.RestClientPublic;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_start)
     ImageButton btn_start;
+    @BindView(R.id.coffee_status)
+    TextView coffee_status;
     private String signal;
     private boolean coffee_on;
 
@@ -49,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
             signal = "COFFEE_ON";
             coffee_on = true;
             Glide.with(this).load(R.drawable.coffee_off).override(300, 300).into(btn_start);
+            coffee_status.setText(getString(R.string.turn_off));
             btn_start.setContentDescription(getString(R.string.turn_off));
         } else {
             signal = "COFFEE_OFF";
             coffee_on = false;
             Glide.with(this).load(R.drawable.coffee_on).override(300, 300).into(btn_start);
+            coffee_status.setText(getString(R.string.turn_on));
             btn_start.setContentDescription(getString(R.string.turn_on));
         }
         RestClientPublic.getClient().getApiService().sendSignal("GAZGW3OVZ7X0VNT6", signal)
@@ -61,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        Log.d(TAG, "Response");
+                        Log.d(TAG, "Response: "+response.body());
                     }
 
                     @Override

@@ -14,7 +14,21 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
+        android:id="@+id/tv_good_morning"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/saludo" />
+        android:text="@string/saludo"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Display1"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/coffee_status"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_good_morning"
+        android:text="@string/turn_on"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"/>
 </RelativeLayout>
